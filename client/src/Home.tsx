@@ -52,7 +52,7 @@ const UserInfo = () => {
 
   const createNote = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `${API_URL}/notes`,
         {
           content: noteContent,

@@ -78,12 +78,12 @@ const App: React.FC = () => {
     try {
       console.log(" OTP sent", { email });
       alert("otp sent");
-      const response = await axios.post(`${URL}/send-otp`, {
+      await axios.post(`${URL}/send-otp`, {
         email,
       });
       setSignUp(true);
     } catch (error) {
-      alert("pleaswe create an account first!");
+      alert("please create an account first!");
       console.error("Err:", error);
     }
   };
