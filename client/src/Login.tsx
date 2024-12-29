@@ -60,10 +60,13 @@ const App: React.FC = () => {
     try {
       console.log("Verifying OTP:", { email, otp });
       alert("otp verified");
-      const response = await axios.post(`${URL}/verify-otp`, {
-        email,
-        otp,
-      });
+      const response = await axios.post(
+        `https://notestracker.onrender.com/verify-otp`,
+        {
+          email,
+          otp,
+        }
+      );
 
       console.log("OTP verified:", response.data);
       navigate("/home");
