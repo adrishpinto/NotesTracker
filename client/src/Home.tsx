@@ -2,13 +2,23 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import icon from "./assets/icon.svg";
 import trash from "./assets/trash.svg";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserInfo = () => {
+  interface Note {
+    _id: string;
+    content: string;
+  }
+
+  interface user {
+    _id: string;
+    email: string;
+    name: string;
+  }
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_URI;
-  const [user, setUser] = useState(null);
-  const [notes, setNotes] = useState([]);
+  const [user, setUser] = useState<user | null>(null);
+  const [notes, setNotes] = useState<Note[]>([]);
   const [noteContent, setNoteContent] = useState("");
 
   const getUser = async () => {
@@ -29,7 +39,7 @@ const UserInfo = () => {
     }
   };
 
-  const deleteNote = async (id) => {
+  const deleteNote = async (id: String) => {
     try {
       await axios.delete(`${API_URL}/notes/${id}`, {
         headers: { Authorization: "Bearer asd1u2h2u89h9ansixnc" },
@@ -116,7 +126,7 @@ const UserInfo = () => {
           <div className="flex sm:flex-row flex-col gap-10 w-full flex-wrap">
             {notes.map((note, i) => (
               <div
-                key={note.id}
+                key={note._id}
                 className="w-full sm:w-[300px]  border-2 my-2 p-3 text-[16px] px-4 justify-between h-[px] shadow-md items-center rounded-xl hover:bg-slate-100"
               >
                 <p>note {i + 1} </p>

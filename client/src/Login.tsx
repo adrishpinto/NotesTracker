@@ -59,7 +59,7 @@ const App: React.FC = () => {
   const verifyOtp = async () => {
     try {
       console.log("Verifying OTP:", { email, otp });
-      alert("otp sent");
+      alert("otp verified");
       const response = await axios.post(`${URL}/verify-otp`, {
         email,
         otp,
@@ -77,6 +77,7 @@ const App: React.FC = () => {
   const sendOtp = async () => {
     try {
       console.log(" OTP sent", { email });
+      alert("otp sent");
       const response = await axios.post(`${URL}/send-otp`, {
         email,
       });
@@ -136,7 +137,7 @@ const App: React.FC = () => {
               placeholder="OTP"
               value={otp}
               onChange={(e) => {
-                setOtp(e.target.value);
+                setOtp(Number(e.target.value));
               }}
             />
             <div

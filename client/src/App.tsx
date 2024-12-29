@@ -117,7 +117,9 @@ const App: React.FC = () => {
       alert("otp sent");
       setSignUp(true);
     } catch (error) {
-      alert("If entered new Email otp will be sent and alert will come, otherwise enter a different email.");
+      alert(
+        "If entered new Email otp will be sent and alert will come, otherwise enter a different email."
+      );
       console.error("Error:", error);
     }
   };
@@ -230,7 +232,7 @@ const App: React.FC = () => {
               placeholder="OTP"
               value={otp}
               onChange={(e) => {
-                setOtp(e.target.value);
+                setOtp(Number(e.target.value));
               }}
             />
             <div
