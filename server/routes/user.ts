@@ -136,21 +136,37 @@ router.post("/send-otp", async (req, res) => {
       return res.status(400).json({ message: "Email is required" });
     }
 
-    // Check if the email exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    // Generate a random OTP
-    const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
-
-    // Store the OTP in memory
+    const otp = crypto.randomInt(100000, 999999);
 
     otpStore[email] = { otp };
+
+    const mailOptions = {
+      from: "adrishpinto423@gmail.com",
+      to: email,
+      subject: "Your OTP for Account Verification",
+      text: `Your OTP for account verification is: ${otp}`,
+    };
+
+    // Send OTP
+    transporter.sendMail(
+      mailOptions,
+      (error: Error | null, info: SentMessageInfo) => {
+        if (error) {
+          return res.status(500).json({ message: "Error sending OTP", error });
+        }
+        return res
+          .status(201)
+          .json({ message: "User created successfully. OTP sent to email." });
+      }
+    );
     console.log(otp);
 
-    return res.status(200).json({ message: "OTP sent successfully", otp }); // Remove OTP from response in production
+    return res.status(200).json({ message: "OTP sent successfully", otp });
   } catch (error) {
     return res.status(500).json({ message: "Error sending OTP", error });
   }
@@ -228,7 +244,6 @@ router.post("/notes", async (req, res) => {
       return res.status(401).json({ message: "Wrong Token Provided" });
     }
 
-    
     console.log(JWT_KEY);
     const { content } = req.body;
     const emailKeys = Object.keys(EmailStore);
