@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const navigate = useNavigate();
   const [eye, setEye] = useState<boolean>(false);
 
-  const [email, setEmail] = useState<string>("a@gmail.com");
+  const [email, setEmail] = useState<string>("");
 
   const [emailErr, setEmailErr] = useState<string>("");
   const [signUp, setSignUp] = useState<boolean>(false);

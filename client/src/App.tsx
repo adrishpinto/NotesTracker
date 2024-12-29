@@ -26,9 +26,9 @@ const validMonths: string[] = [
 const App: React.FC = () => {
   const navigate = useNavigate();
   const [eye, setEye] = useState<boolean>(false);
-  const [name, setName] = useState<string>("a");
-  const [dob, setDob] = useState<string>("12 june 2000");
-  const [email, setEmail] = useState<string>("a@gmail.com");
+  const [name, setName] = useState<string>("");
+  const [dob, setDob] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [dateError, setDateError] = useState<string>("");
   const [emailErr, setEmailErr] = useState<string>("");
   const [signUp, setSignUp] = useState<boolean>(false);
