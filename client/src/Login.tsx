@@ -54,7 +54,7 @@ const App: React.FC = () => {
     setEmailErr("");
   };
 
-  const API_URL = import.meta.env.VITE_URI;
+
 
   const verifyOtp = async () => {
     try {
