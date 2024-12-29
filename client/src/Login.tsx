@@ -78,7 +78,7 @@ const App: React.FC = () => {
     try {
       console.log(" OTP sent", { email });
       alert("otp sent");
-      await axios.post(`${URL}send-otp`, {
+      await axios.post(`https://notestracker.onrender.com/send-otp`, {
         email,
       });
       setSignUp(true);
