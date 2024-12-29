@@ -77,7 +77,7 @@ const UserInfo = () => {
 
   return (
     <div>
-      <div className="mt-10">
+      <div className="mt-11">
         <div className="flex justify-around sm:justify-between sm:w-[90%] mx-auto">
           <div className="flex">
             <img src={icon} className="ml " alt="icon" />
